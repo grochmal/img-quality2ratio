@@ -1,0 +1,71 @@
+VAM format
+==========
+
+size to 768px on bigger edge
+jpeg quality 90
+colorspace RGB
+total of images 800
+
+NIRP format
+===========
+
+size to 600px on bigger edge
+jpeg quality 90
+colorspace RGB
+total of images 1000
+
+script
+======
+
+for image in *.jpg; do
+  size=$(identify $image | cut -d ' ' -f 3)
+  if [[ ${size#*x} > ${size%x*} ]]; then
+    param=600
+  else
+    param=x600
+  fi
+  convert $i -colorspace RGB -quality 90 -resize $param new_$i
+done
+
+HAH format
+==========
+
+sha1sum-id-width-height-format
+e.g.
+f2d05b02e832fd1f1590d12b88ff4e2c7c6509f0-411712-1200-1800-jpg
+
+total of images
+---------------
+
+total : 49561 (17238 MiB)
+gif   :   393 (0.79%)     # gif are too quirky and unimportant, ignored
+jpeg  : 43242 (87.25%)
+png   :  5926 (11.96%)
+
+width x height
+--------------
+
+w.max()
+3508
+
+w.min()
+30
+
+h.max()
+3998
+
+h.min()
+3
+
+w.mean()
+925.97449634466204
+
+w.std()
+273.54040325926621
+
+h.mean()
+1086.4887580897121
+
+h.std()
+477.44664118204628
+
